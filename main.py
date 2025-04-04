@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT), display=1)
 dt = 0
@@ -16,6 +18,13 @@ def main():
     drawable = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
     Player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
+
+    asteroids = pygame.sprite.Group()
+    Asteroid.containers = (asteroids, updatable, drawable)
+
+
+    AsteroidField.containers = (updatable,)
+    AsteroidField()
 
     while True:
         dt = clock.tick(FPS) / 1000
